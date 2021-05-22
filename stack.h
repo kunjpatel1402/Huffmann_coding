@@ -35,11 +35,14 @@ class stack{
         }
         else{
             stack_node* temp = new stack_node;
-            node* tree_node = temp->tree_node;
+            temp = head;
+            node* return_node = new node;
+            return_node = temp->tree_node;
+            temp = head;
             head = head->next;
             delete temp;
             size--;
-            return tree_node;
+            return return_node;
         }
     }
     void clear(){
@@ -50,20 +53,13 @@ class stack{
         stack_node* parser = new stack_node;
         parser = head;
         while(parser!=NULL){
-            cout<<"\n\nsymbol:"<<parser->tree_node->symbol;
-            cout<<"\nprobablity:"<<parser->tree_node->probablity;
-            cout<<"\nparent:"<<parser->tree_node->parent;
-            cout<<"\nleft:"<<parser->tree_node->left;
-            cout<<"\nright:"<<parser->tree_node->right;
-            cout<<"\ndummy:"<<parser->tree_node->dummy;
+            print_node(parser->tree_node);
             parser = parser->next;
         }
         cout<<"\n";
     }
     void sort(){
-        stack_node* primary_parser = new stack_node;
         stack_node* secondary_parser = new stack_node;
-        primary_parser = head;
         while(true){
             secondary_parser = head;
             bool flag = true;
@@ -98,4 +94,9 @@ class stack{
             }
         }
     }
+    int get_size(){
+        return size;
+    }
 };
+
+
