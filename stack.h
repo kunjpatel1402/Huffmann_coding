@@ -99,27 +99,3 @@ class stack{
         }
     }
 };
-
-
-/*void linked_list::sort(){
-    node* point = new node;
-    point = head;
-    while (true){
-        node* temp_point = new node;
-        temp_point = head;
-        bool flag = true;
-        while (temp_point->next!=NULL){
-            if ((temp_point->data) > (temp_point->next->data)){
-                int temp = temp_point->data;
-                temp_point->data = temp_point->next->data;
-                temp_point->next->data = temp;
-                flag = false;
-            };
-            temp_point = temp_point->next;
-            
-        }
-        if (flag){
-            break;
-        }
-    }
-}*/
