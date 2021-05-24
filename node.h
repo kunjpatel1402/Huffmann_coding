@@ -30,3 +30,4 @@ void print_node(node* tree_node){
     cout<<"\nright:"<<tree_node->right;
     cout<<"\ndummy:"<<tree_node->dummy;
 }
+
