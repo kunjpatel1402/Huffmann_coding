@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "stack.h"
+#include "queue.h"
 
 using namespace std;
 
@@ -38,11 +39,11 @@ node* create_tree(stack* s){
 }
 
 int main(){
-    stack s;
+    /*stack s;
     s.push(create_node('a',0.125,false));
     s.push(create_node('b',0.125,false));
     s.push(create_node('c',0.25,false));
     s.push(create_node('d',0.50,false));
-    printInorder(create_tree(&s),"");
+    printInorder(create_tree(&s),"");*/
     return 0;
 }
