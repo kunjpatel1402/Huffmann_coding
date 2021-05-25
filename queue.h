@@ -18,6 +18,7 @@ class intqueue{
     int dequeue();
     int front();
     void print();
+    int get_size();
 };
 
 intqueue::intqueue(){
@@ -62,7 +63,8 @@ int intqueue::dequeue(){
         temp = head;
         head = head->next;
         size--;
-        head->prev = NULL;
+        /*head->prev = NULL;
+        temp->next = NULL;*/
         delete temp;
         return ret;
     }
@@ -83,4 +85,7 @@ void intqueue::print(){
         temp = temp->next;
     }
     cout<<endl;
+}
+int intqueue::get_size(){
+    return size;
 }
