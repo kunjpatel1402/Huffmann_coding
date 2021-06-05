@@ -86,6 +86,7 @@ int main()
     readfile >> n ;
     Graph g;
      node_data = new char[n+1];
+ // ane aiya '\0' thi init pan kari de
         node_data[0]='*';
         int t;
         for(int i=1;i<=n;i++)
