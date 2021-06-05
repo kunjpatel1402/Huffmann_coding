@@ -30,7 +30,7 @@ void Graph::decoding()
     cout<<"Please enter the name of compressed file: (with .dat extention)";
     string inp;
     cin>>inp;
-    ifstream fin("inp",ios::binary);
+    ifstream fin(inp,ios::binary);
     //Myfile will write the decoded data in the file whereas comressed file is the file from where we get the encoded data
     unsigned int u;
     /*now we will traverse the tree iteratively untill we read the whole file in each traversal whenever we read 1 we will move to the left child and 
