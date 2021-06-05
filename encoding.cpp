@@ -9,13 +9,14 @@ using namespace std;
 void printPreorder(node* root,string s,string* binary_code_for_the_character,int* nodes_in_tree){
     if (root == NULL)
         return;
-    binary_code_for_the_character[root->symbol] = s;
+    if(root->symbol!='\0')
+        binary_code_for_the_character[root->symbol] = s;
     (*nodes_in_tree)++;
     //cout<<*nodes_in_tree<<endl;
     root->node_number = *nodes_in_tree;
+    //print_node(root);
     printPreorder(root->left,(s + "1"),binary_code_for_the_character,nodes_in_tree);
     printPreorder(root->right,(s + "0"),binary_code_for_the_character,nodes_in_tree);
-    //print_node(root);
     //cout<<"\n"<<s<<endl;
 }
 
@@ -53,9 +54,11 @@ void add_to_queue(intqueue* q,string str){
     for (unsigned long long i = 0;i < str.length();i++){
         if (str[i]=='1'){
             q->enqueue(1);
+            cout<<1;
         }
         else{
             q->enqueue(0);
+            cout<<0;
         }
     }
 }
@@ -98,16 +101,17 @@ void compress_file_to(string original_file_name, string compressed_file_name,str
     string s;
     unsigned int d;
     intqueue q;
-    while(true){
+    while(!fin.eof()){
         getline(fin,s);
-        if (fin.eof()) break;
-        cout<<s<<endl;
+        //if (fin.eof()) break;
+        //cout<<s<<endl;
         for (unsigned long long int i = 0; i < s.length();i++){
             add_to_queue(&q,binary_code_for_character[s[i]]);
             if (q.get_size() >= 32){
                 d = bin2uint(&q);
                 //fout<<d<<endl;
                 fout.write((char*)&d,sizeof(d));
+                cout<<"\n"<<d<<endl;
             }
         }
         add_to_queue(&q,binary_code_for_character['\n']);
@@ -115,6 +119,7 @@ void compress_file_to(string original_file_name, string compressed_file_name,str
                 d = bin2uint(&q);
                 //fout<<d<<endl;
                 fout.write((char*)&d,sizeof(d));
+                cout<<"\n"<<d<<endl;
         }
     }
     //q.print();
@@ -122,6 +127,7 @@ void compress_file_to(string original_file_name, string compressed_file_name,str
         d = bin2uint(&q);
         //fout<<d<<endl;
         fout.write((char*)&d,sizeof(d));
+        cout<<"\n"<<d<<endl;
     }while(!q.empty());
     fout.close();
     fin.close();
@@ -196,22 +202,22 @@ int main(){
     count_character_frequencies("C:\\Users\\Kunj R. Patel\\Desktop\\codes\\c++\\assignment\\huffmann coding\\test.txt",freq_of_character,&freq_of_next_line,&total_frequency);
     //cout<<"2"<<endl;
     stack s;
-    for (unsigned long long int i = 0; i < 256; i++){
+    for (unsigned long long int i = 1; i < 256; i++){
         //cout<<(char)i<<" "<<freq_of_character[i]<<endl;
         if (freq_of_character[i]){
             s.push(create_node((char)i,freq_of_character[i]*1.0/total_frequency,false,nullptr,nullptr,nullptr));
         }
     }
-    s.push(create_node('\n',freq_of_next_line*1.0/total_frequency,false));
+    //s.push(create_node('\n',freq_of_next_line*1.0/total_frequency,false));
    //cout<<total_frequency<<endl;
     node* root_of_tree = create_tree(&s);
     int nodes_in_tree = 0;
     printPreorder(root_of_tree,"",binary_code_for_character,&nodes_in_tree);
-    /*for (int i = 0; i < 256; i++){
+    for (int i = 0; i < 256; i++){
         if (binary_code_for_character[i]!= ""){
-            cout<<(char)i<<" "<<binary_code_for_character[i]<<endl;
+            cout<<i<<" "<<binary_code_for_character[i]<<endl;
         }
-    }*/
+    }
     compress_file_to("C:\\Users\\Kunj R. Patel\\Desktop\\codes\\c++\\assignment\\huffmann coding\\test.txt","compressed.dat",binary_code_for_character);
     /*ifstream fin("compressed.dat",ios::binary);
     unsigned int u;
