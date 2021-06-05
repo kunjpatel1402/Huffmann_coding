@@ -91,6 +91,7 @@ int main()
         for(int i=1;i<=n;i++)
         {
             readfile >> t;
+         // aiya ek if muk jo dummy na hoy to j symbol read thay baki nai
             readfile >>node_data[t];
 
         }
