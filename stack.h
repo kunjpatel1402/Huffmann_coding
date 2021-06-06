@@ -3,21 +3,21 @@
 
 using namespace std;
 
-struct stack_node{
+struct table_node{
     node* tree_node;
-    stack_node* next;
+    table_node* next;
 };
 
-class stack{
-    stack_node* head;
+class table{
+    table_node* head;
     int size;
     public:
-    stack(){
+    table(){
         head = NULL;
         size = 0;
     }
     void push(node* new_node){
-        stack_node* temp = new stack_node;
+        table_node* temp = new table_node;
         temp->tree_node = new_node;
         temp->next = NULL;
         size++;
@@ -34,7 +34,7 @@ class stack{
             return NULL;
         }
         else{
-            stack_node* temp = new stack_node;
+            table_node* temp = new table_node;
             temp = head;
             node* return_node = new node;
             return_node = temp->tree_node;
@@ -50,7 +50,7 @@ class stack{
         size = 0;
     }
     void print(){
-        stack_node* parser = new stack_node;
+        table_node* parser = new table_node;
         parser = head;
         while(parser!=NULL){
             print_node(parser->tree_node);
@@ -59,7 +59,7 @@ class stack{
         cout<<"\n";
     }
     void sort(){
-        stack_node* secondary_parser = new stack_node;
+        table_node* secondary_parser = new table_node;
         while(true){
             secondary_parser = head;
             bool flag = true;
@@ -93,6 +93,13 @@ class stack{
                 break;
             }
         }
+    }
+    bool empty(){
+        if (head == NULL) return true;
+        else return false;
+    }
+    float top(){
+        return head->tree_node->probablity;
     }
     int get_size(){
         return size;
