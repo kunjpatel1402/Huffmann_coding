@@ -9,16 +9,17 @@ struct node{
     char symbol;
     float probablity;
     bool dummy;
+    int node_number;
 };
 
-node* create_node(char symbol, float probablity,bool dummy){
+node* create_node(char symbol, float probablity,bool dummy,node* left_node = NULL,node* right_node = NULL,node* parent_node = NULL){
     node* temp = new node;
     temp->symbol = symbol;
     temp->probablity = probablity;
     temp->dummy = dummy;
-    temp->left = nullptr;
-    temp->parent = nullptr;
-    temp->right = nullptr;
+    temp->left = left_node;
+    temp->parent = parent_node;
+    temp->right = right_node;
     return temp;
 }
 
