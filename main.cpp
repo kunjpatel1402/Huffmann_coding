@@ -5,8 +5,8 @@ using namespace std;
 int main()
 {
 
-    cout<<"Which operation you want to perform!: "<<endl;
-    cout<<"Enter \n1. for compression of file\n2 to decompress file"<<endl;
+    cout<<"Which operation you want to perform?: "<<endl;
+    cout<<"Enter \n1. for compression of file\n2. to decompress file"<<endl;
     cout<<":";
     int n;
     cin>>n;
