@@ -34,7 +34,7 @@ public:
     map<int, list<int>> adj;
     void addEdge(int v, int w);
     void decoding();
-    
+
 };
 void Graph::addEdge(int v, int w)
 {
@@ -52,7 +52,12 @@ void Graph::decoding()
     cout<<"Please enter the name of compressed file: (with .dat extention)"<<endl;
     cin>>inp;
     ifstream fin(inp,ios::binary);
+    //Myfile will write the decoded data in the file whereas comressed file is the file from where we get the encoded data
     unsigned int u;
+    /*now we will traverse the tree iteratively untill we read the whole file in each traversal whenever we read 1 we will move to the left child and
+    we move to the right child if we read 0 and if we reach at some leaf node we write it's char data to our decompressed file and again start traversing
+    from the root*/
+
     if (!fin){
         cout<<"cannot open file";
         return ;
@@ -101,6 +106,7 @@ int main()
     cout<<"Please enter the tree file name: "<<endl;
     cin>>s;
     ifstream readfile(s,ios::binary);
+    //this will start reading the file which contains data of nodes,edges and  char each node has
     int n;
     readfile >> n ;
     Graph g;
@@ -123,7 +129,7 @@ int main()
             int a,b;
             readfile >> a;
             readfile >> b;
-            g.addEdge(a,b);
+            g.addEdge(a,b);//making tree using edge data
         }
     }
     readfile.close();
