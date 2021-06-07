@@ -16,6 +16,7 @@ class table{
         head = NULL;
         size = 0;
     }
+    //push elements at the end
     void push(node* new_node){
         table_node* temp = new table_node;
         temp->tree_node = new_node;
@@ -29,6 +30,7 @@ class table{
             head = temp;
         }
     }
+    //pop elements from the end
     node* pop(){
         if (head == NULL){
             return NULL;
@@ -58,6 +60,7 @@ class table{
         }
         cout<<"\n";
     }
+    /*sorting data present in the table */
     void sort(){
         table_node* secondary_parser = new table_node;
         while(true){
