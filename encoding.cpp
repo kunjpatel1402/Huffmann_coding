@@ -30,7 +30,7 @@ void clear(){
     }
     cout<<"\n->file compressed"<<endl;
 }
-
+//here we will traverse the tree once and give the binary code to the symbol and also count the number of nodes and give the numbering to the nodes
 void printPreorder(node* root,string s,string* binary_code_for_the_character,int* nodes_in_tree){
     if (root == NULL)
         return;
@@ -41,7 +41,8 @@ void printPreorder(node* root,string s,string* binary_code_for_the_character,int
     printPreorder(root->left,(s + "1"),binary_code_for_the_character,nodes_in_tree);
     printPreorder(root->right,(s + "0"),binary_code_for_the_character,nodes_in_tree);
 }
-
+/*in the below function we will sort the data of table and every time the loop runs it will pop 2 nodes having the least 2 probabilities and make a new node of the combined probability
+and make the new node as parent of that 2 and push it in the table*/ 
 node* create_tree(table* s){
     int pause = 0;
     //(*s) = (*s).sort_table();
@@ -81,7 +82,7 @@ void add_to_queue(intqueue* q,string str){
         }
     }
 }
-
+//convert the binary in 32 bit unsigned int form
 unsigned int bin2uint(intqueue* q){
     unsigned int ret = 0;
     for(int i = 31; i >= 0 && !(*q).empty(); i--){
@@ -119,6 +120,8 @@ void compress_file_to(string original_file_name, string compressed_file_name,str
         getline(fin,s);
         lines_read++;
         //cout<<lines_read<<" "<<*total_lines;
+        /*here we are reading the file line by line and also keep pushing their corresponding binary code into the queue and when the size become equal to the unsigned int writing their
+int value in the file */
         for (unsigned long long int i = 0; i < s.length();i++){
             add_to_queue(&q,binary_code_for_character[s[i]]);
             if (q.get_size() >= 32){
@@ -145,7 +148,7 @@ void compress_file_to(string original_file_name, string compressed_file_name,str
     fout.close();
     fin.close();
 }
-
+/*in the below function it will traverse the tree and will write the node data for each node in the file for node dummy nodes it will write 0*/
 void write_symbols(fstream& fout,node* n){
     fout.seekg(0,ios::end);
     if (n != NULL){
@@ -165,6 +168,7 @@ void write_symbols(fstream& fout,node* n){
         return;
     }
 }
+//this will write parent-child edges in the file
 void write_edges(fstream& fout,node* n){
     if ((n->right != NULL)&&(n->left!=NULL)){
         fout<<n->node_number<<" "<<n->left->node_number<<endl;
@@ -176,7 +180,7 @@ void write_edges(fstream& fout,node* n){
         return;
     }
 }
-
+/*in the tree file first the total number of edges and then symbols and edges will be written*/
 void write_tree_to(fstream& fout,node* n,int* nodes_written){
     int no = *nodes_written;
     fout<<no<<endl;
@@ -191,6 +195,7 @@ int main(){
     string inputFile;
     cout<<"\n Please enter name for the input file(file should be in same folder as program):\n";
     cin>>inputFile;
+    //calculating frequency and using them probability will be calculated and then it will be pushed into the table
     count_character_frequencies(inputFile,freq_of_character,&total_frequency,&total_lines);
     cout<<"\n->calculated probablities for the characters";
     table s;
@@ -200,6 +205,7 @@ int main(){
         }
     }
     cout<<"\n->pushed them into table";
+    //tree will be created accordingily
     node* root_of_tree = create_tree(&s);
     int nodes_in_tree = 0;
     printPreorder(root_of_tree,"",binary_code_for_character,&nodes_in_tree);
