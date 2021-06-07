@@ -194,7 +194,7 @@ int encoding(){
     unsigned long long int freq_of_character[256] = {0},total_frequency = 0;
     int total_lines = 0;
     string inputFile;
-    cout<<"\n Please enter name for the input file(file should be in same folder as program):\n";
+    cout<<"\n Please enter name for the input file with .txt extension(file should be in same folder as program):\n";
     cin>>inputFile;
     //calculating frequency and using them probability will be calculated and then it will be pushed into the table
     count_character_frequencies(inputFile,freq_of_character,&total_frequency,&total_lines);
@@ -212,11 +212,11 @@ int encoding(){
     printPreorder(root_of_tree,"",binary_code_for_character,&nodes_in_tree);
     cout<<"\n->created binary tree"<<endl;
     string compressedFile;
-    cout<<"\n Please enter name for the compressed file :\n";
+    cout<<"\n Please enter name for the compressed file(with .dat extension) :\n";
     cin>>compressedFile;
     compress_file_to(inputFile,compressedFile,binary_code_for_character,&total_lines);
     string compressedFileTree;
-    cout<<"\n Please enter name for the file where you want to write tree for decoding:\n";
+    cout<<"\n Please enter name for the file where you want to write tree for decoding for (with .dat extension):\n";
     cin>>compressedFileTree;
     fstream fout(compressedFileTree,ios::out|ios::binary);
     cout<<"\nwriting data for tree in file";
