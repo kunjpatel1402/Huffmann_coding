@@ -211,10 +211,6 @@ int encoding(){
     int nodes_in_tree = 0;
     printPreorder(root_of_tree,"",binary_code_for_character,&nodes_in_tree);
     cout<<"\n->created binary tree"<<endl;
-    string compressedFile;
-    cout<<"\n Please enter name for the compressed file(with .dat extension) :\n";
-    cin>>compressedFile;
-    compress_file_to(inputFile,compressedFile,binary_code_for_character,&total_lines);
     string compressedFileTree;
     cout<<"\n Please enter name for the file where you want to write tree for decoding for (with .dat extension):\n";
     cin>>compressedFileTree;
@@ -222,6 +218,10 @@ int encoding(){
     cout<<"\nwriting data for tree in file";
     write_tree_to(fout,root_of_tree,&nodes_in_tree);
     fout.close();
+    string compressedFile;
+    cout<<"\n Please enter name for the compressed file(with .bin extension) :\n";
+    cin>>compressedFile;
+    compress_file_to(inputFile,compressedFile,binary_code_for_character,&total_lines);
     cout<<"\nprocess complete";
     return 0;
 }
