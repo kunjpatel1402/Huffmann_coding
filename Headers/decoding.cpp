@@ -111,7 +111,7 @@ int decoding()
 {
     string s;
     take_file_name_input:{;}
-    cout<<"Please enter the tree file name: "<<endl;
+    cout<<"Please enter the tree file name(with .dat extention): "<<endl;
     cin>>s;
     ifstream readfile(s,ios::binary);
     //this will start reading the file which contains data of nodes,edges and  char each node has
