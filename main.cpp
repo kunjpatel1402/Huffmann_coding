@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
-#include "encoding.cpp"
-#include "decoding.cpp"
+#include "./Headers/encoding.cpp"
+#include "./Headers/decoding.cpp"
 using namespace std;
 int main()
 {
 
     cout<<"Which operation you want to perform?: "<<endl;
-    cout<<"Enter \n1. for compression of file\n2. to decompress file"<<endl;
-    cout<<":";
+    cout<<"Enter \n1. for compression of file\n2. to decompress file\n0. to exit"<<endl;
     int n;
+    get_input:{;}
+    cout<<":";
     cin>>n;
     switch(n)
     {
@@ -22,9 +23,14 @@ int main()
             decoding();
             break;
         }
+    case 0:
+        {
+            break;
+        }
     default:
         {
             cout<<"Please enter a valid digit"<<endl;
+            goto get_input;
         }
     }
 
