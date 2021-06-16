@@ -101,11 +101,11 @@ void count_character_frequencies(string filename, unsigned long long int* freq_o
         exit(0);
     }
     string s;
-    while (true){
+    while (!fin.eof()){
         getline(fin,s);
         (*total_lines)++;
         (*total_frequency)++;
-        if (fin.eof()) break;
+        //if (fin.eof()) break;
         for ( unsigned long long int i = 0; i < s.length(); i++){
             freq_of_character[s[i]]++;
             (*total_frequency)++;
